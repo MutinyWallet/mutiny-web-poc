@@ -22,6 +22,29 @@ npm i
 npm start
 ```
 
+### Local node-manager
+
+To make local development easier with a latest local version of the node manager, you may want to `npm link` it.
+
+In your `mutiny-node` local repo:
+
+```
+just pack && cd node-manager/pkg && npm link
+```
+
+Now in this repo, link them.
+
+```
+just local
+```
+
+To revert back and use the remote version of node-manager:
+
+```
+just remote
+```
+
+
 ## With SSL
 
 Since we plan to use web workers and other SSL-required things, we can also do SSL in localhost to make testing a little less gotch-ey.
