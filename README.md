@@ -22,14 +22,15 @@ npm i
 npm start
 ```
 
-### Local node-manager
+### Local 
+anager
 
 To make local development easier with a latest local version of the node manager, you may want to `npm link` it.
 
 In your `mutiny-node` local repo:
 
 ```
-just pack && cd node-manager/pkg && npm link
+just pack && cd pkg && npm link
 ```
 
 Now in this repo, link them.
