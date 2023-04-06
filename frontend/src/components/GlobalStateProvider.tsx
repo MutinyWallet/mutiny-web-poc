@@ -6,7 +6,7 @@ interface Props {
 }
 
 export type NodeManagerSettingStrings = {
-    network?: string, proxy?: string, esplora?: string
+    network?: string, proxy?: string, esplora?: string, rgs?: string, lsp?: string,
 }
 
 interface NodeManagerProviderProps {
@@ -20,18 +20,22 @@ export function getExistingSettings(): NodeManagerSettingStrings {
     const network = localStorage.getItem('MUTINY_SETTINGS_network') || process.env.REACT_APP_NETWORK;
     const proxy = localStorage.getItem('MUTINY_SETTINGS_proxy') || process.env.REACT_APP_PROXY;
     const esplora = localStorage.getItem('MUTINY_SETTINGS_esplora') || process.env.REACT_APP_ESPLORA;
+    const rgs = localStorage.getItem('MUTINY_SETTINGS_rgs') || process.env.REACT_APP_RGS || "";
+    const lsp = localStorage.getItem('MUTINY_SETTINGS_lsp') || process.env.REACT_APP_LSP || "";
 
-    return { network, proxy, esplora }
+    return { network, proxy, esplora, rgs, lsp }
 }
 
 async function setAndGetMutinySettings(settings?: NodeManagerSettingStrings): Promise<NodeManagerSettingStrings> {
-    let { network, proxy, esplora } = settings || {};
+    let { network, proxy, esplora, rgs, lsp } = settings || {};
 
     let existingSettings = getExistingSettings();
     try {
         network = network || existingSettings.network;
         proxy = proxy || existingSettings.proxy;
         esplora = esplora || existingSettings.esplora;
+        rgs = rgs || existingSettings.rgs;
+        lsp = lsp || existingSettings.lsp;
 
         if (!network || !proxy || !esplora) {
             throw new Error("Missing a default setting for network, proxy, or esplora. Check your .env file to make sure it looks like .env.sample")
@@ -39,8 +43,10 @@ async function setAndGetMutinySettings(settings?: NodeManagerSettingStrings): Pr
         localStorage.setItem('MUTINY_SETTINGS_network', network);
         localStorage.setItem('MUTINY_SETTINGS_proxy', proxy);
         localStorage.setItem('MUTINY_SETTINGS_esplora', esplora);
+        localStorage.setItem('MUTINY_SETTINGS_rgs', rgs ?? "");
+        localStorage.setItem('MUTINY_SETTINGS_lsp', lsp ?? "");
 
-        return { network, proxy, esplora }
+        return { network, proxy, esplora, rgs, lsp }
     } catch (error) {
         console.error(error)
         throw error
@@ -100,13 +106,15 @@ export const GlobalStateProvider = ({ children }: Props) => {
         console.time("Setup");
         console.log("Starting setup...")
         try {
-            const { network, proxy, esplora } = await setAndGetMutinySettings(settings)
+            const { network, proxy, esplora, rgs, lsp } = await setAndGetMutinySettings(settings)
             console.log("Initializing Node Manager")
             console.log("Using network", network);
             console.log("Using proxy", proxy);
             console.log("Using esplora address", esplora);
+            console.log("Using rgs address", rgs);
+            console.log("Using lsp address", lsp);
 
-            const nodeManager = await new NodeManager("", undefined, proxy, network, esplora)
+            const nodeManager = await new NodeManager("", undefined, proxy, network, esplora, rgs ?? "", lsp ?? "")
 
             let nodes = await nodeManager.list_nodes() as any[];
 

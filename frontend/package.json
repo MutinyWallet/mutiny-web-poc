@@ -1,10 +1,10 @@
 {
   "name": "mw-frontend",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "homepage": "https://reckless.mutinywallet.com",
   "dependencies": {
-    "@mutinywallet/node-manager": "0.2.2",
+    "@mutinywallet/node-manager": "0.2.3",
     "@tanstack/react-query": "^4.16.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

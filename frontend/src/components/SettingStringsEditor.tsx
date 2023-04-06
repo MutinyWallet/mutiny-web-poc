@@ -73,6 +73,10 @@ export default function SettingStringsEditor() {
                 </div>
                 <h3 className="text-lg font-light uppercase mt-2">Esplora</h3>
                 <input onChange={handleInputChange("esplora")} defaultValue={nodeManagerSettings.esplora} className={`w-full ${inputStyle({ accent: "blue" })}`} type="text" placeholder='Esplora' />
+                <h3 className="text-lg font-light uppercase mt-2">RGS</h3>
+                <input onChange={handleInputChange("rgs")} defaultValue={nodeManagerSettings.rgs} className={`w-full ${inputStyle({ accent: "blue" })}`} type="text" placeholder='RGS' />
+                <h3 className="text-lg font-light uppercase mt-2">LSP</h3>
+                <input onChange={handleInputChange("lsp")} defaultValue={nodeManagerSettings.lsp} className={`w-full ${inputStyle({ accent: "blue" })}`} type="text" placeholder='LSP' />
                 <h3 className="text-lg font-light uppercase mt-2">Websockets Proxy</h3>
                 <input onChange={handleInputChange("proxy")} defaultValue={nodeManagerSettings.proxy} className={`w-full ${inputStyle({ accent: "blue" })}`} type="text" placeholder='Websocket Proxy' />
             </div>
