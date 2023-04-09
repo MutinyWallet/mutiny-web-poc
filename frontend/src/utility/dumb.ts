@@ -66,7 +66,20 @@ export function mempoolTxUrl(txid?: string, network?: string) {
         return "#"
     }
 
-    return `https://mempool.space/${network === "testnet" ? "testnet/" : ""}tx/${txid}`
+    if (network) {
+        switch (network) {
+            case "mainnet":
+                return `https://mempool.space/tx/${txid}`
+            case "testnet":
+                return `https://mempool.space/testnet/tx/${txid}`
+            case "signet":
+                return `https://mutinynet.com/tx/${txid}`
+            default:
+                return `https://mempool.space/tx/${txid}`
+        }
+    }
+
+    return `https://mempool.space/tx/${txid}`
 }
 
 export function objectToSearchParams<T extends Record<string, string | undefined>>(obj: T): string {
