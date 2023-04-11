@@ -37,6 +37,12 @@ async function setAndGetMutinySettings(settings?: NodeManagerSettingStrings): Pr
         rgs = rgs || existingSettings.rgs;
         lsp = lsp || existingSettings.lsp;
 
+        if (proxy?.startsWith("http://")) {
+            proxy = proxy.replace("http://", "ws://")
+        } else if (proxy?.startsWith("https://")) {
+            proxy = proxy.replace("https://", "wss://")
+        }
+
         if (!network || !proxy || !esplora) {
             throw new Error("Missing a default setting for network, proxy, or esplora. Check your .env file to make sure it looks like .env.sample")
         }
