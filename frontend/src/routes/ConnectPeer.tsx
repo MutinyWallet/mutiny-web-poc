@@ -17,10 +17,15 @@ export default function ConnectPeer() {
 	const navigate = useNavigate();
 
 	const [peerConnectString, setPeerConnectString] = useState("")
+	const [label, setLabel] = useState("")
 	const [nodeManagerSettings] = useState<NodeManagerSettingStrings>(getExistingSettings());
 
 	function handlePeerChange(e: React.ChangeEvent<HTMLInputElement>) {
 		setPeerConnectString(e.target.value)
+	}
+
+	function handleLabelChange(e: React.ChangeEvent<HTMLInputElement>) {
+		setLabel(e.target.value)
 	}
 
 	async function handleSubmit(e: React.SyntheticEvent) {
@@ -28,7 +33,7 @@ export default function ConnectPeer() {
 		try {
 			const myNode = await getFirstNode(nodeManager!);
 
-			await nodeManager?.connect_to_peer(myNode, peerConnectString)
+			await nodeManager?.connect_to_peer(myNode, peerConnectString, label)
 			await queryClient.invalidateQueries({ queryKey: ['peers'] })
 
 			navigate("/manager/peers")
@@ -78,6 +83,7 @@ export default function ConnectPeer() {
 					<div className="flex flex-col gap-4">
 						<p className="text-2xl font-light">Or you can enter your peer's connection string</p>
 						<input onChange={handlePeerChange} className={`w-full ${inputStyle({ accent: "red" })}`} type="text" placeholder='Target peer' />
+						<input onChange={handleLabelChange} className={`w-full ${inputStyle({ accent: "red" })}`} type="text" placeholder='Label (Optional)' />
 					</div>
 					<ActionButton>Connect</ActionButton>
 				</form>

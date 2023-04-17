@@ -62,7 +62,7 @@ function SinglePeer({ peer }: { peer: MutinyPeer }) {
                 </div>
                 <div className="flex-1 font-mono overflow-ellipsis">
                     <h3 className="text-lg">
-                        {takeN(peer.pubkey, 15)}
+                        {peer.label ? peer.label : peer.alias ? peer.alias : takeN(peer.pubkey, 15)}
                     </h3>
                     {peer.is_connected && <h5 className="text-green">Connected</h5>}
                     {!peer.is_connected && <h5 className="text-red">Disconnected</h5>}
