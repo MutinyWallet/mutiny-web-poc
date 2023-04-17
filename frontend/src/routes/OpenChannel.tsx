@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import Close from "../components/Close";
 import PageTitle from "../components/PageTitle";
 import { mainWrapperStyle, selectStyle } from "../styles";
-import { MutinyPeer } from "@mutinywallet/node-manager";
+import { MutinyPeer } from "@mutinywallet/mutiny-wasm";
 
 export default function OpenChannel() {
 	const { nodeManager } = useContext(NodeManagerContext);
