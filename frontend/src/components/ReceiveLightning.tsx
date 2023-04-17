@@ -5,7 +5,7 @@ import { NodeManagerContext } from "@components/GlobalStateProvider";
 import { useQuery } from "@tanstack/react-query";
 import takeN from "@util/takeN";
 import { useNavigate } from "react-router-dom";
-import { MutinyInvoice } from "@mutinywallet/node-manager";
+import { MutinyInvoice } from "@mutinywallet/mutiny-wasm";
 
 export default function ReceiveLightning({ invoice }: { invoice: MutinyInvoice | undefined }) {
     const { nodeManager } = useContext(NodeManagerContext);

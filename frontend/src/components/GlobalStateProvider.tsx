@@ -1,4 +1,4 @@
-import init, { InitOutput, NodeManager } from '@mutinywallet/node-manager';
+import init, { InitOutput, NodeManager } from '@mutinywallet/mutiny-wasm';
 import React, { createContext, useEffect, useRef, useState } from 'react';
 
 interface Props {

@@ -2,7 +2,7 @@
 
 The first version of the mutiny web concept, built during the bolt.fun hackathon.
 
-The node logic is built in rust and located [here](https://github.com/MutinyWallet/mutiny-node) and the typescript bindings for that is located [here](https://www.npmjs.com/package/@mutinywallet/node-manager).
+The node logic is built in rust and located [here](https://github.com/MutinyWallet/mutiny-node) and the typescript bindings for that is located [here](https://www.npmjs.com/package/@mutinywallet/mutiny-wasm).
 
 ## Development 
 
@@ -30,7 +30,7 @@ To make local development easier with a latest local version of the node manager
 In your `mutiny-node` local repo:
 
 ```
-just pack && cd pkg && npm link
+just link
 ```
 
 Now in this repo, link them.
@@ -39,7 +39,7 @@ Now in this repo, link them.
 just local
 ```
 
-To revert back and use the remote version of node-manager:
+To revert back and use the remote version of mutiny-wasm:
 
 ```
 just remote

@@ -2,7 +2,7 @@ import { NodeManagerContext } from "@components/GlobalStateProvider";
 import { useQuery } from "@tanstack/react-query";
 import prettyPrintAmount from "@util/prettyPrintAmount";
 import prettyPrintTime from "@util/prettyPrintTime";
-import { MutinyInvoice } from "@mutinywallet/node-manager";
+import { MutinyInvoice } from "@mutinywallet/mutiny-wasm";
 import { useContext } from "react";
 import Close from "../components/Close"
 import PageTitle from "../components/PageTitle"

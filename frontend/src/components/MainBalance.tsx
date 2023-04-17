@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { satsToUsd } from "@util/conversions";
 import prettyPrintAmount from "@util/prettyPrintAmount";
 import { usePriceQuery } from "@util/queries";
-import { MutinyBalance } from "@mutinywallet/node-manager";
+import { MutinyBalance } from "@mutinywallet/mutiny-wasm";
 import { useContext, useState } from "react";
 import { NodeManagerContext } from "./GlobalStateProvider";
 
